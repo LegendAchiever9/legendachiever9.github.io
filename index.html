@@ -3,15 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My GitHub Pages Website</title>
+    <title>My Blog</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
 </head>
 <body>
+
     <header>
-        <h1>Welcome to My Website!</h1>
+        <h1>Welcome to My Blog</h1>
+        <nav>
+            <a href="#home" class="active">Home</a>
+            <a href="#about">About</a>
+        </nav>
     </header>
-    <section>
-        <p>This is a basic webpage hosted on GitHub Pages.</p>
+
+    <section id="tags">
+        <h3>Filter by Tag:</h3>
+        <ul>
+            <li><a href="#" class="tag" onclick="filterPosts('tech')">Tech</a></li>
+            <li><a href="#" class="tag" onclick="filterPosts('life')">Life</a></li>
+            <li><a href="#" class="tag" onclick="filterPosts('travel')">Travel</a></li>
+        </ul>
     </section>
+
+    <section id="blog-posts">
+        <h3>Latest Posts</h3>
+        <div class="post" data-tags="tech, life">
+            <h4><a href="post1.html">My First Blog Post</a></h4>
+            <p>Posted on March 1, 2025</p>
+            <p class="preview">This is a preview of the blog post content...</p>
+        </div>
+
+        <div class="post" data-tags="travel, life">
+            <h4><a href="post2.html">Exploring New Places</a></h4>
+            <p>Posted on March 10, 2025</p>
+            <p class="preview">This is a preview of the travel post content...</p>
+        </div>
+
+        <div class="post" data-tags="tech">
+            <h4><a href="post3.html">Tech Trends in 2025</a></h4>
+            <p>Posted on March 15, 2025</p>
+            <p class="preview">This is a preview of the tech post content...</p>
+        </div>
+
+        <!-- Add more posts here -->
+    </section>
+
 </body>
 </html>
