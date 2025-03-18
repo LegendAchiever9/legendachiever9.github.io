@@ -10,48 +10,80 @@
 <body>
 
     <header>
-        <h1><a href="index.html">Back to Home</a></h1>
+        <h1><a href="index.html" style="color: white; text-decoration: none;">Back to Home</a></h1>
     </header>
 
-    <article>
-        <h2>My First Blog Post</h2>
-        <p>Posted on March 1, 2025</p>
-        
-    
-        <!-- Section for Music -->
-        <section id="music">
-            <h3>Music</h3>
-            <p>Here is where you can write about music. It can be about your favorite artists, albums, concerts, or whatever fits the theme of your post!</p>
-        </section>
-
-        <!-- Section for Elevator Pitch -->
-        <section id="elevator-pitch">
-            <h3>Elevator Pitch</h3>
-            <p>In this section, provide a concise summary or elevator pitch of your main idea, project, or message. This could be a quick summary for readers to understand your point of view in a few sentences.</p>
-        </section>
-
-       <!-- The toggle button -->
-       <button class="toggle-content">SPOILERS</button>
-
-       <!-- The content to be toggled (initially hidden) -->
-       <div class="hidden-content" style="display:none;">
-           <p><b> This is the point of no return, where we'll discuss parts of the game that are SPOILERS. Turn back now if you're not ready! </b></p>
-           <!-- Section for Music -->
-        <section id="music">
-            <h3>Music</h3>
-            <p>Here is where you can write about music. It can be about your favorite artists, albums, concerts, or whatever fits the theme of your post!</p>
-        </section>
-       </div>
-
-
-        <section class="tags">
+    <main>
+        <!-- Tags Section moved to the top -->
+        <section class="tags" id="tags">
             <h3>Tags:</h3>
             <ul>
                 <li><a href="index.html#tags" class="tag" onclick="filterPosts('tech')">Tech</a></li>
                 <li><a href="index.html#tags" class="tag" onclick="filterPosts('life')">Life</a></li>
             </ul>
         </section>
-    </article>
 
+        <article>
+            <h2>My First Blog Post</h2>
+            <p>Posted on March 1, 2025</p>
+            
+            <!-- Section for Elevator Pitch -->
+            <section id="elevator-pitch">
+                <h3>Elevator Pitch</h3>
+                <p>In this section, provide a concise summary or elevator pitch of your main idea, project, or message. This could be a quick summary for readers to understand your point of view in a few sentences.</p>
+            </section>
+
+            <!-- Section for Content -->
+            <section id="content">
+                <h3>Content</h3>
+                <p>Here is where you write the main content of your post. It could be your story, thoughts, analysis, or any information you want to share with your readers. Make it engaging!</p>
+            </section>
+
+            <!-- Section for Music -->
+            <section id="music">
+                <h3>Music</h3>
+                <p>Here is where you can write about music. It can be about your favorite artists, albums, concerts, or whatever fits the theme of your post!</p>
+            </section>
+
+            <!-- The toggle button -->
+            <button class="toggle-content">SPOILERS</button>
+
+            <!-- The content to be toggled (initially hidden) -->
+       <div class="hidden-content" style="display:none;">
+        <p><b> This is the point of no return, where we'll discuss parts of the game that are SPOILERS. Turn back now if you're not ready! </b></p>
+        <!-- Section for Music -->
+     <section id="music">
+         <h3>Music</h3>
+         <p>Here is where you can write about music. It can be about your favorite artists, albums, concerts, or whatever fits the theme of your post!</p>
+     </section>
+    </div>
+
+            <!-- Section for Summary -->
+            <section id="summary">
+                <h3>Summary</h3>
+                <p>This is the summary section where you can wrap up your blog post. Offer a conclusion, give recommendations, or leave your readers with something to think about.</p>
+            </section>
+        </article>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 My Blog. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Toggle content visibility on button click
+        const toggleButton = document.querySelector('.toggle-content');
+        const content = document.querySelector('.content');
+
+        toggleButton.addEventListener('click', () => {
+            content.style.display = (content.style.display === 'block') ? 'none' : 'block';
+        });
+
+        // Filter posts by tags (you can expand this functionality later)
+        function filterPosts(tag) {
+            console.log(`Filtering posts by: ${tag}`);
+            // Your filtering logic goes here
+        }
+    </script>
 </body>
 </html>
