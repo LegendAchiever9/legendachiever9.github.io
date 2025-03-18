@@ -15,7 +15,7 @@ body {
 
 /* Header Style */
 header {
-    background-color: #61c0bf; /* Soft light teal */
+    background-color: #62F6BC; /* Soft light green */
     color: white;
     padding: 20px;
     text-align: center;
@@ -52,25 +52,34 @@ section#tags {
     border-radius: 8px;
 }
 
+/* Make the tags container a flexbox */
 section#tags ul {
     list-style-type: none;
     padding: 0;
+    display: flex;
+    flex-wrap: wrap; /* Allows the tags to wrap onto new lines */
+    gap: 10px; /* Adds space between tags */
+    justify-content: flex-start;
 }
 
+/* Style each tag item */
 section#tags li {
-    display: inline;
-    margin-right: 12px;
+    font-size: 0.9rem;
 }
 
+/* Style for the tags */
 section#tags a {
-    color: #104609; /* Dark green for links */
+    color: #104609;
     text-decoration: none;
-    font-weight: 500;
+    background-color: #62F6BC; /* Light green background for tags */
+    padding: 5px 10px;
+    border-radius: 20px;
 }
 
+/* Hover effect for the tags */
 section#tags a:hover {
-    text-decoration: underline;
-    color: #61c0bf; /* Light teal on hover for consistency */
+    background-color: #62F6BC; /* Matching hover effect with other links */
+    color: white;
 }
 
 /* Blog Posts Section */
@@ -80,7 +89,7 @@ section#blog-posts {
 }
 
 section#blog-posts .post {
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.911);
     margin-bottom: 20px;
     padding: 20px;
     border-radius: 8px;
@@ -101,8 +110,8 @@ section#blog-posts .post .preview {
 
 /* Toggle Content Button */
 button.toggle-content {
-    background-color: #61c0bf; /* Matching the header's color */
-    color: white;
+    background-color: #62F6BC; /* Matching the header's color */
+    color: black;
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
@@ -113,7 +122,7 @@ button.toggle-content {
 }
 
 button.toggle-content:hover {
-    background-color: #4fa39d; /* Slightly darker teal for hover effect */
+    background-color: #46b186; /* Slightly darker teal for hover effect */
 }
 
 /* Content Area (hidden by default) */
@@ -139,13 +148,13 @@ button.toggle-content:hover {
 .tags a {
     color: #104609;
     text-decoration: none;
-    background-color: #e1f7e1; /* Light green background for tags */
+    background-color: #62F6BC; /* Light green background for tags */
     padding: 5px 10px;
     border-radius: 20px;
 }
 
 .tags a:hover {
-    background-color: #61c0bf; /* Matching hover effect with other links */
+    background-color: #62F6BC; /* Matching hover effect with other links */
     color: white;
 }
 
@@ -155,7 +164,7 @@ footer {
     padding: 20px 0;
     font-size: 1rem;
     color: #777;
-    background-color: #f1f1f1;
+    background-color: #f5f5f5;
     border-top: 1px solid #ddd;
     margin-top: 40px;
 }

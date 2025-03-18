@@ -77,3 +77,24 @@ document.querySelectorAll('a[href="#home"]').forEach(link => {
         posts.forEach(post => post.style.display = 'block');
     });
 });
+
+// Function to sort the tags in alphabetical order
+window.addEventListener('load', () => {
+    const tagList = document.querySelector('#tags ul');
+    const tags = Array.from(tagList.children); // Get all list items as an array
+    
+    // Sort the tags alphabetically by the text content of the <a> tags
+    tags.sort((a, b) => {
+        const textA = a.textContent.trim().toLowerCase();
+        const textB = b.textContent.trim().toLowerCase();
+        return textA.localeCompare(textB);
+    });
+    
+    // Clear the current list
+    tagList.innerHTML = '';
+
+    // Append the sorted tags back to the list
+    tags.forEach(tag => {
+        tagList.appendChild(tag);
+    });
+});
