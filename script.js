@@ -1,13 +1,8 @@
-// Toggle the visibility of specific content inside the blog post
+// Toggle the visibility of specific content inside the blog post with a smooth transition
 document.querySelectorAll('.toggle-content').forEach(button => {
     button.addEventListener('click', () => {
-        // Find the specific content to toggle (in this case, an element with class "hidden-content")
         const content = button.nextElementSibling;
-        if (content.style.display === 'none' || content.style.display === '') {
-            content.style.display = 'block';
-        } else {
-            content.style.display = 'none';
-        }
+        content.classList.toggle('visible');
     });
 });
 
@@ -28,73 +23,73 @@ function filterPosts(tag) {
             post.style.display = 'none';
         }
     });
+
+    // Update active class for tags
+    document.querySelectorAll('.tag').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll(`.tag[href='#'][onclick*='${tag}']`).forEach(activeTag => {
+        activeTag.classList.add('active');
+    });
 }
+
+// Ensure each post preview displays its tags
+function displayPostTags() {
+    document.querySelectorAll('.post').forEach(post => {
+        const tagsContainer = post.querySelector('.tags-list');
+        const tags = post.getAttribute('data-tags').split(', ');
+        tagsContainer.innerHTML = '';
+        tags.forEach(tag => {
+            const tagElement = document.createElement('span');
+            tagElement.classList.add('post-tag');
+            tagElement.textContent = tag;
+            tagsContainer.appendChild(tagElement);
+        });
+    });
+}
+
+// Sort tags alphabetically on page load
+window.addEventListener('load', () => {
+    const tagList = document.querySelector('#tags ul');
+    if (tagList) {
+        const tags = Array.from(tagList.children);
+        tags.sort((a, b) => a.textContent.trim().localeCompare(b.textContent.trim()));
+        tagList.innerHTML = '';
+        tags.forEach(tag => tagList.appendChild(tag));
+    }
+});
 
 // Add event listeners for tag clicks to filter posts and update the URL
 document.querySelectorAll('.tag').forEach(tag => {
     tag.addEventListener('click', (event) => {
-        // Prevent default link behavior
         event.preventDefault();
-        
-        const selectedTag = tag.getAttribute('onclick').match(/'([^']+)'/)[1]; // Extract the tag from onclick attribute
-        
-        // Update the URL with the selected tag
+        const selectedTag = tag.getAttribute('onclick').match(/'([^']+)'/)[1];
         window.location.href = `index.html?tag=${selectedTag}`;
     });
 });
 
-// Call the filterPosts function on page load if there's a tag parameter in the URL
+// Apply active class styling when page loads
 window.addEventListener('load', () => {
     const selectedTag = getQueryParam('tag');
     if (selectedTag) {
         filterPosts(selectedTag);
+        const activeTag = document.querySelector(`.tag[href='#'][onclick*='${selectedTag}']`);
+        if (activeTag) activeTag.classList.add('active');
     } else {
-        // If no tag is selected, show all posts
-        const posts = document.querySelectorAll('.post');
-        posts.forEach(post => post.style.display = 'block');
+        document.querySelectorAll('.post').forEach(post => post.style.display = 'block');
     }
+    displayPostTags();
 });
 
-// Add an event listener to the "Back to Home" link to clear filters
-document.querySelectorAll('a[href="index.html"]').forEach(link => {
+// Reset filters when clicking "Home" link, but allow normal navigation for posts
+document.querySelectorAll('a[href="index.html"], a[href="#home"]').forEach(link => {
     link.addEventListener('click', (event) => {
-        // Clear the query parameters by navigating to the home page without any filters
-        window.history.replaceState(null, '', 'index.html');
-    });
-});
-
-// Add an event listener to the "Home" link in the navigation to clear the filters
-document.querySelectorAll('a[href="#home"]').forEach(link => {
-    link.addEventListener('click', (event) => {
-        // Prevent default anchor link behavior (scrolling to #home)
         event.preventDefault();
-
-        // Clear the filters by navigating to the home page without any query parameters
-        window.history.replaceState(null, '', 'index.html');
-
-        // After clearing the filters, display all posts
-        const posts = document.querySelectorAll('.post');
-        posts.forEach(post => post.style.display = 'block');
+        window.location.href = 'index.html';
     });
 });
 
-// Function to sort the tags in alphabetical order
-window.addEventListener('load', () => {
-    const tagList = document.querySelector('#tags ul');
-    const tags = Array.from(tagList.children); // Get all list items as an array
-    
-    // Sort the tags alphabetically by the text content of the <a> tags
-    tags.sort((a, b) => {
-        const textA = a.textContent.trim().toLowerCase();
-        const textB = b.textContent.trim().toLowerCase();
-        return textA.localeCompare(textB);
-    });
-    
-    // Clear the current list
-    tagList.innerHTML = '';
-
-    // Append the sorted tags back to the list
-    tags.forEach(tag => {
-        tagList.appendChild(tag);
+// Ensure blog post links work correctly
+document.querySelectorAll('.post h4 a').forEach(link => {
+    link.addEventListener('click', (event) => {
+        event.stopPropagation(); // Prevent interference from other event listeners
     });
 });

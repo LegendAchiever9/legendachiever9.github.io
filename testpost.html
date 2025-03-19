@@ -10,7 +10,7 @@
 <body>
 
     <header>
-        <h1><a href="index.html" style="color: white; text-decoration: none;">Back to Home</a></h1>
+        <h1><a href="index.html" style="color: black; text-decoration: none;">Back to Home</a></h1>
     </header>
 
     <main>
@@ -52,14 +52,14 @@
             <button class="toggle-content">SPOILERS</button>
 
             <!-- The content to be toggled (initially hidden) -->
-       <div class="hidden-content" style="display:none;">
-        <p><b> This is the point of no return, where we'll discuss parts of the game that are SPOILERS. Turn back now if you're not ready! </b></p>
-        <!-- Section for Music -->
-     <section id="music">
-         <h3>Music</h3>
-         <p>Here is where you can write about music. It can be about your favorite artists, albums, concerts, or whatever fits the theme of your post!</p>
-     </section>
-    </div>
+            <div class="hidden-content" style="display:none;">
+                <p><b>This is the point of no return, where we'll discuss parts of the game that are SPOILERS. Turn back now if you're not ready!</b></p>
+                <!-- Section for Music -->
+                <section id="music">
+                    <h3>Music</h3>
+                    <p>Here is where you can write about music. It can be about your favorite artists, albums, concerts, or whatever fits the theme of your post!</p>
+                </section>
+            </div>
 
             <!-- Section for Summary -->
             <section id="summary">
@@ -76,10 +76,14 @@
     <script>
         // Toggle content visibility on button click
         const toggleButton = document.querySelector('.toggle-content');
-        const content = document.querySelector('.content');
+        const hiddenContent = document.querySelector('.hidden-content');  // Correcting the target to '.hidden-content'
 
         toggleButton.addEventListener('click', () => {
-            content.style.display = (content.style.display === 'block') ? 'none' : 'block';
+            if (hiddenContent.style.display === 'none' || hiddenContent.style.display === '') {
+                hiddenContent.style.display = 'block';
+            } else {
+                hiddenContent.style.display = 'none';
+            }
         });
 
         // Filter posts by tags (you can expand this functionality later)

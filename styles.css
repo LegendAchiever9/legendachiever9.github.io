@@ -5,27 +5,54 @@
     box-sizing: border-box;
 }
 
+html, body {
+    height: 100%;
+}
+
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #f5f5f5; /* Lighter background for a softer look */
-    color: #333;
+    background-color: #001935; 
+    color: white;
     padding: 20px;
     line-height: 1.6;
 }
 
+/* Max width for content */
+#tags,
+header,
+section#blog-posts {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Ensure that the main content area fits the width restriction */
+main {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Adjust content inside the article as well */
+article {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Style for the tags */
+.post .post-tag {
+    font-size: 0.8rem;
+    color: #777;
+    margin-right: 10px;
+    display: inline-block;
+}
+
 /* Header Style */
 header {
-    background-color: #62F6BC; /* Soft light green */
-    color: white;
+    background-color: #62F6BC; 
+    color: black;
     padding: 20px;
     text-align: center;
     border-radius: 8px;
     margin-bottom: 30px;
-}
-
-/* Add space after the post date */
-article p {
-    margin-bottom: 15px; /* Adjust the value as needed */
 }
 
 header h1 {
@@ -36,7 +63,7 @@ header h1 {
 /* Navigation Links */
 nav a {
     margin: 0 15px;
-    color: white;
+    color: black;
     text-decoration: none;
 }
 
@@ -46,10 +73,11 @@ nav a:hover {
 
 /* Tags Section */
 section#tags {
-    background-color: #f1f1f1; /* Light gray background */
+    background-color: #f1f1f1;
     padding: 15px;
     margin-top: 30px;
     border-radius: 8px;
+    color: black; /* Ensure text is black */
 }
 
 /* Make the tags container a flexbox */
@@ -57,8 +85,8 @@ section#tags ul {
     list-style-type: none;
     padding: 0;
     display: flex;
-    flex-wrap: wrap; /* Allows the tags to wrap onto new lines */
-    gap: 10px; /* Adds space between tags */
+    flex-wrap: wrap;
+    gap: 10px;
     justify-content: flex-start;
 }
 
@@ -71,15 +99,23 @@ section#tags li {
 section#tags a {
     color: #104609;
     text-decoration: none;
-    background-color: #62F6BC; /* Light green background for tags */
+    background-color: #62F6BC;
     padding: 5px 10px;
     border-radius: 20px;
 }
 
 /* Hover effect for the tags */
 section#tags a:hover {
-    background-color: #62F6BC; /* Matching hover effect with other links */
+    background-color: #001935;
     color: white;
+}
+
+/* Active tag styling */
+section#tags a.active {
+    background-color: #104609;
+    color: white;
+    font-weight: bold;
+    transition: background-color 0.3s, color 0.3s, border 0.3s;
 }
 
 /* Blog Posts Section */
@@ -89,23 +125,25 @@ section#blog-posts {
 }
 
 section#blog-posts .post {
-    background-color: rgba(255, 255, 255, 0.911);
+    background-color: #f1f1f1;
+    color: black;
     margin-bottom: 20px;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-section#blog-posts .post h2 {
-    font-size: 2rem;
-    color: #333;
-    margin-bottom: 10px;
-}
-
-section#blog-posts .post .preview {
-    color: #555;
-    font-size: 1rem;
-    margin-bottom: 20px;
+/* Ensure post-page styles only affect testpost.html */
+.post-page main,
+.post-page article,
+.post-page #tags,
+.post-page .hidden-content {
+    background-color: #f1f1f1;
+    color: black;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 800px;
+    margin: 0 auto;
 }
 
 /* Toggle Content Button */
@@ -122,51 +160,27 @@ button.toggle-content {
 }
 
 button.toggle-content:hover {
-    background-color: #46b186; /* Slightly darker teal for hover effect */
+    background-color: #348867; /* Slightly darker teal for hover effect */
 }
 
 /* Content Area (hidden by default) */
-.content {
+.hidden-content {
     display: none;
-    margin-top: 20px;
     font-size: 1rem;
-    color: #555;
+    color: black; /* Hidden content text should be black */
 }
-
-/* Tags List Style */
-.tags ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-.tags li {
-    display: inline-block;
-    margin-right: 12px;
-    font-size: 0.9rem;
-}
-
-.tags a {
-    color: #104609;
-    text-decoration: none;
-    background-color: #62F6BC; /* Light green background for tags */
-    padding: 5px 10px;
-    border-radius: 20px;
-}
-
-.tags a:hover {
-    background-color: #62F6BC; /* Matching hover effect with other links */
-    color: white;
-}
-
 /* Footer Style */
 footer {
+    max-width: 800px;
+    margin: 0 auto;
     text-align: center;
     padding: 20px 0;
     font-size: 1rem;
     color: #777;
     background-color: #f5f5f5;
     border-top: 1px solid #ddd;
-    margin-top: 40px;
+    margin-top: 20px;
+    border-radius: 8px;
 }
 
 /* Responsive Design */
