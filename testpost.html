@@ -7,24 +7,25 @@
     <link rel="stylesheet" href="styles.css">
     <script src="script.js" defer></script>
 </head>
-<body>
+<body class="post-page">
 
     <header>
         <h1><a href="index.html" style="color: black; text-decoration: none;">Back to Home</a></h1>
     </header>
 
+<!-- Tags Section moved to the top -->
+<section class="tags" id="tags">
+    <h3>Tags:</h3>
+    <ul>
+        <li><a href="#" class="tag" onclick="filterPosts('exploration')">Exploration</a></li>
+        <li><a href="#" class="tag" onclick="filterPosts('survival')">Survival</a></li>
+        <li><a href="#" class="tag" onclick="filterPosts('crafting')">Crafting</a></li>
+        <li><a href="#" class="tag" onclick="filterPosts('open-world')">Open World</a></li>
+        <li><a href="#" class="tag" onclick="filterPosts('atmospheric-horror')">Atmospheric Horror</a></li>
+    </ul>
+</section>
+
     <main>
-        <!-- Tags Section moved to the top -->
-        <section class="tags" id="tags">
-            <h3>Tags:</h3>
-            <ul>
-                <li><a href="#" class="tag" onclick="filterPosts('exploration')">Exploration</a></li>
-                <li><a href="#" class="tag" onclick="filterPosts('survival')">Survival</a></li>
-                <li><a href="#" class="tag" onclick="filterPosts('crafting')">Crafting</a></li>
-                <li><a href="#" class="tag" onclick="filterPosts('open-world')">Open World</a></li>
-                <li><a href="#" class="tag" onclick="filterPosts('atmospheric-horror')">Atmospheric Horror</a></li>
-            </ul>
-        </section>
 
         <article>
             <h2>My First Blog Post</h2>
@@ -53,7 +54,7 @@
 
             <!-- The content to be toggled (initially hidden) -->
             <div class="hidden-content" style="display:none;">
-                <p><b>This is the point of no return, where we'll discuss parts of the game that are SPOILERS. Turn back now if you're not ready!</b></p>
+                <p><b>This is the point of no return, where we'll discuss parts of the game that are SPOILERS. <br> Turn back now if you're not ready!</b></p>
                 <!-- Section for Music -->
                 <section id="music">
                     <h3>Music</h3>
@@ -70,7 +71,7 @@
     </main>
 
     <footer>
-        <p>&copy; 2025 My Blog. All rights reserved.</p>
+        <p>&copy; LegendAchiever9 Game Blog. My thoughts are my own.</p>
     </footer>
 
     <script>

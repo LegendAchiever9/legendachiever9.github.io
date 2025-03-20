@@ -133,17 +133,30 @@ section#blog-posts .post {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Ensure post-page styles only affect testpost.html */
-.post-page main,
-.post-page article,
-.post-page #tags,
-.post-page .hidden-content {
+/* Setting styles for different parts of testpost.html */
+.post-page main {
     background-color: #f1f1f1;
     color: black;
     padding: 20px;
     border-radius: 8px;
     max-width: 800px;
-    margin: 0 auto;
+    margin: 20px auto;
+}
+
+.post-page #tags {
+    background-color: #f1f1f1;
+    color: black;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 800px;
+    margin: 20px auto;
+}
+
+.post-page .hidden-content {
+    background-color: #f1f1f1;
+    color: black;
+    border-radius: 8px;
+    max-width: 800px;
 }
 
 /* Toggle Content Button */
@@ -156,7 +169,8 @@ button.toggle-content {
     cursor: pointer;
     font-size: 1rem;
     transition: background-color 0.3s ease;
-    margin-bottom: 20px; /* Adds space below the button */
+    margin-bottom: 10px; /* Adds space below the button */
+    margin-top: 10px;
 }
 
 button.toggle-content:hover {
@@ -169,6 +183,11 @@ button.toggle-content:hover {
     font-size: 1rem;
     color: black; /* Hidden content text should be black */
 }
+
+.hidden-content > p:nth-of-type(1) {
+    text-align: center;
+}
+
 /* Footer Style */
 footer {
     max-width: 800px;
