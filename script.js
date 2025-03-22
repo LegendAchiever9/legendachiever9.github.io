@@ -117,3 +117,29 @@ document.querySelectorAll('.post h4 a').forEach(link => {
         event.stopPropagation();
     });
 });
+
+
+// Random button functionality
+document.addEventListener("DOMContentLoaded", () => {
+    const randomButton = document.querySelector('a[href="#random"]');
+    randomButton.addEventListener("click", (event) => {
+        event.preventDefault();
+
+        // Collect all blog post links dynamically
+        const posts = Array.from(document.querySelectorAll("#blog-posts .post a"));
+
+        if (posts.length === 0) {
+            alert("No blog posts found.");
+            return;
+        }
+
+        // Exclude "Home" and "About" links
+        const blogPosts = posts.filter(post => !["#home", "#about"].includes(post.getAttribute("href")));
+
+        // Pick a random blog post
+        const randomPost = blogPosts[Math.floor(Math.random() * blogPosts.length)];
+
+        // Redirect to the random post
+        window.location.href = randomPost.getAttribute("href");
+    });
+});
