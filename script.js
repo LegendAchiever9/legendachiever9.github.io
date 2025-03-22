@@ -12,22 +12,15 @@ function getQueryParam(name) {
     return urlParams.get(name);
 }
 
-// Filter posts based on tags
-function filterPosts(tag) {
+// Updated filterPosts function to accept an array of active tags (applying the AND condition)
+function filterPosts(selectedTags) {
     const posts = document.querySelectorAll('.post');
     posts.forEach(post => {
-        const tags = post.getAttribute('data-tags').split(', ');
-        if (tags.includes(tag)) {
-            post.style.display = 'block';
-        } else {
-            post.style.display = 'none';
-        }
-    });
-
-    // Update active class for tags
-    document.querySelectorAll('.tag').forEach(t => t.classList.remove('active'));
-    document.querySelectorAll(`.tag[href='#'][onclick*='${tag}']`).forEach(activeTag => {
-        activeTag.classList.add('active');
+        // Get the tags for each post (assuming the format "tag1, tag2, tag3")
+        const postTags = post.getAttribute('data-tags').split(', ');
+        // Show the post only if it contains every active tag (AND condition)
+        const showPost = selectedTags.every(tag => postTags.includes(tag));
+        post.style.display = showPost ? 'block' : 'none';
     });
 }
 
@@ -35,14 +28,16 @@ function filterPosts(tag) {
 function displayPostTags() {
     document.querySelectorAll('.post').forEach(post => {
         const tagsContainer = post.querySelector('.tags-list');
-        const tags = post.getAttribute('data-tags').split(', ');
-        tagsContainer.innerHTML = '';
-        tags.forEach(tag => {
-            const tagElement = document.createElement('span');
-            tagElement.classList.add('post-tag');
-            tagElement.textContent = tag;
-            tagsContainer.appendChild(tagElement);
-        });
+        if (tagsContainer) {
+            const tags = post.getAttribute('data-tags').split(', ');
+            tagsContainer.innerHTML = '';
+            tags.forEach(tag => {
+                const tagElement = document.createElement('span');
+                tagElement.classList.add('post-tag');
+                tagElement.textContent = tag;
+                tagsContainer.appendChild(tagElement);
+            });
+        }
     });
 }
 
@@ -57,29 +52,58 @@ window.addEventListener('load', () => {
     }
 });
 
-// Add event listeners for tag clicks to filter posts and update the URL
+// Multi-select tag click event: toggles tag selection and updates filtering & URL
 document.querySelectorAll('.tag').forEach(tag => {
     tag.addEventListener('click', (event) => {
         event.preventDefault();
+        // Extract the tag name from the onclick attribute
+        // Assumes format like: onclick="filterPosts('tagName')"
         const selectedTag = tag.getAttribute('onclick').match(/'([^']+)'/)[1];
-        window.location.href = `index.html?tag=${selectedTag}`;
+
+        // Retrieve the current active tags from URL parameter 'tag'
+        let activeTagsStr = getQueryParam('tag');
+        let activeTags = activeTagsStr ? activeTagsStr.split(',') : [];
+
+        // Toggle: remove the tag if already selected; add it otherwise.
+        const index = activeTags.indexOf(selectedTag);
+        if (index > -1) {
+            activeTags.splice(index, 1);
+        } else {
+            activeTags.push(selectedTag);
+        }
+
+        // Build the new URL using a comma-separated list of active tags.
+        let newUrl = 'index.html';
+        if (activeTags.length > 0) {
+            newUrl += '?tag=' + activeTags.join(',');
+        }
+        window.location.href = newUrl; // This reload triggers the updated filtering
     });
 });
 
-// Apply active class styling when page loads
+// On page load, apply filtering and active CSS classes based on URL parameter
 window.addEventListener('load', () => {
-    const selectedTag = getQueryParam('tag');
-    if (selectedTag) {
-        filterPosts(selectedTag);
-        const activeTag = document.querySelector(`.tag[href='#'][onclick*='${selectedTag}']`);
-        if (activeTag) activeTag.classList.add('active');
+    // Get the active tags from the URL (if any) and convert to an array
+    const selectedTagsStr = getQueryParam('tag');
+    let activeTags = selectedTagsStr ? selectedTagsStr.split(',') : [];
+
+    if (activeTags.length > 0) {
+        filterPosts(activeTags);
+        // For every active tag, add the "active" class to the matching tag elements
+        activeTags.forEach(singleTag => {
+            const matchingTags = document.querySelectorAll(`.tag[href='#'][onclick*="'${singleTag}'"]`);
+            matchingTags.forEach(el => el.classList.add('active'));
+        });
     } else {
+        // If no tags are active, show all posts
         document.querySelectorAll('.post').forEach(post => post.style.display = 'block');
     }
+    
     displayPostTags();
 });
 
-// Reset filters when clicking "Home" link, but allow normal navigation for posts
+// Reset filters when clicking the "Home" link (or a link with #home),
+// mimicking a full filter reset as seen previously
 document.querySelectorAll('a[href="index.html"], a[href="#home"]').forEach(link => {
     link.addEventListener('click', (event) => {
         event.preventDefault();
@@ -87,9 +111,9 @@ document.querySelectorAll('a[href="index.html"], a[href="#home"]').forEach(link 
     });
 });
 
-// Ensure blog post links work correctly
+// Ensure blog post links work correctly by stopping event propagation.
 document.querySelectorAll('.post h4 a').forEach(link => {
     link.addEventListener('click', (event) => {
-        event.stopPropagation(); // Prevent interference from other event listeners
+        event.stopPropagation();
     });
 });
