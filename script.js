@@ -143,3 +143,26 @@ document.addEventListener("DOMContentLoaded", () => {
         window.location.href = randomPost.getAttribute("href");
     });
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+    const tagsContainer = document.getElementById("tags-container");
+    const toggleButton = document.getElementById("tags-toggle");
+
+    // Restore button state from localStorage
+    const savedState = localStorage.getItem("tagsExpanded") === "true";
+    tagsContainer.classList.toggle("expanded", savedState);
+    toggleButton.textContent = savedState ? "Show Less" : "Show More";
+    toggleButton.setAttribute("aria-expanded", savedState);
+
+    toggleButton.addEventListener("click", () => {
+        // Toggle the expanded class
+        const isExpanded = tagsContainer.classList.toggle("expanded");
+
+        // Save the state to localStorage
+        localStorage.setItem("tagsExpanded", isExpanded);
+
+        // Update button text and ARIA attribute
+        toggleButton.textContent = isExpanded ? "Show Less" : "Show More";
+        toggleButton.setAttribute("aria-expanded", isExpanded);
+    });
+});

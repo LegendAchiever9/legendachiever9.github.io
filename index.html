@@ -21,36 +21,41 @@
 
     <section id="tags">
         <h3>Filter by Tag:</h3>
-        <ul>
-            <li><a href="#" class="tag" aria-label="Filter posts by Puzzle games" onclick="filterPosts('puzzle')">Puzzle</a></li>
-            <li><a href="#" class="tag" aria-label="Filter posts by Mystery games" onclick="filterPosts('mystery')">Mystery</a></li>
-            <li><a href="#" class="tag" aria-label="Filter posts by Story Driven games" onclick="filterPosts('story-driven')">Story Driven</a></li>
-            <li><a href="#" class="tag" aria-label="Filter posts by Knowledge-Based games" onclick="filterPosts('knowledge-based')">Knowledge-Based</a></li>
-            <li><a href="#" class="tag" aria-label="Filter posts by Strategy games" onclick="filterPosts('strategy')">Strategy</a></li>
-            <li><a href="#" class="tag" aria-label="Filter posts by Simulation games" onclick="filterPosts('simulation')">Simulation</a></li>
-            <li><a href="#" class="tag" aria-label="Filter posts by Social games" onclick="filterPosts('social')">Social</a></li>
-            <li><a href="#" class="tag" aria-label="Filter posts by Fishing games" onclick="filterPosts('fishing')">Fishing</a></li>
-            <li><a href="#" class="tag" aria-label="Filter posts by Exploration games" onclick="filterPosts('exploration')">Exploration</a></li>
-            <li><a href="#" class="tag" aria-label="Filter posts by Survival games" onclick="filterPosts('survival')">Survival</a></li>
-            <li><a href="#" class="tag" aria-label="Filter posts by Crafting games" onclick="filterPosts('crafting')">Crafting</a></li>
-            <li><a href="#" class="tag" aria-label="Filter posts by Open World games" onclick="filterPosts('open-world')">Open World</a></li>
-            <li><a href="#" class="tag" aria-label="Filter posts by Atmospheric Horror games" onclick="filterPosts('atmospheric-horror')">Atmospheric Horror</a></li>
-            <li><a href="#" class="tag" aria-label="Filter posts by Deckbuilder games" onclick="filterPosts('deckbuilder')">Deckbuilder</a></li>
-            <li><a href="#" class="tag" aria-label="Filter posts by Roguelite games" onclick="filterPosts('roguelite')">Roguelite</a></li>
-            <li><a href="#" class="tag" aria-label="Filter posts by Metroidvania games" onclick="filterPosts('metroidvania')">Metroidvania</a></li>
-            <li><a href="#" class="tag" aria-label="Filter posts by Precision Platformer games" onclick="filterPosts('precision-platformer')">Precision-Platformer</a></li>
-            <li><a href="#" class="tag" aria-label="Filter posts by 3D Platformer games" onclick="filterPosts('3d-platformer')">3D Platformer</a></li>
-            <li><a href="#" class="tag" aria-label="Filter posts by Collectathon games" onclick="filterPosts('collectathon')">Collectathon</a></li>
-            <li><a href="#" class="tag" aria-label="Filter posts by Combat-Focused games" onclick="filterPosts('combat-focused')">Combat-Focused</a></li>
-            <li><a href="#" class="tag" aria-label="Filter posts by Minigames" onclick="filterPosts('minigames')">Minigames</a></li>
-            <li><a href="#" class="tag" aria-label="Filter posts by Soulslike games" onclick="filterPosts('soulslike')">Soulslike</a></li>
-            <li><a href="#" class="tag" aria-label="Filter posts by Difficult games" onclick="filterPosts('difficult')">Difficult</a></li>
-            <li><a href="#" class="tag" aria-label="Filter posts by Turn-Based games" onclick="filterPosts('turn-based')">Turn-Based</a></li>
-            <li><a href="#" class="tag" aria-label="Filter posts by ARPG games" onclick="filterPosts('arpg')">ARPG</a></li>
-            <li><a href="#" class="tag" aria-label="Filter posts by Co-op games" onclick="filterPosts('co-op')">Co-op</a></li>
-            <li><a href="#" class="tag" aria-label="Filter posts by Resource Management games" onclick="filterPosts('resource-management')">Resource Management</a></li>
-            <li><a href="#" class="tag" aria-label="Filter posts by Retro games" onclick="filterPosts('retro')">Retro</a></li>
-        </ul>
+        <!-- Wrap the tag list in a new container -->
+        <div id="tags-container">
+            <ul>
+                <li><a href="#" class="tag" aria-label="Filter posts by Puzzle games" onclick="filterPosts('puzzle')">Puzzle</a></li>
+                <li><a href="#" class="tag" aria-label="Filter posts by Mystery games" onclick="filterPosts('mystery')">Mystery</a></li>
+                <li><a href="#" class="tag" aria-label="Filter posts by Story Driven games" onclick="filterPosts('story-driven')">Story Driven</a></li>
+                <li><a href="#" class="tag" aria-label="Filter posts by Knowledge-Based games" onclick="filterPosts('knowledge-based')">Knowledge-Based</a></li>
+                <li><a href="#" class="tag" aria-label="Filter posts by Strategy games" onclick="filterPosts('strategy')">Strategy</a></li>
+                <li><a href="#" class="tag" aria-label="Filter posts by Simulation games" onclick="filterPosts('simulation')">Simulation</a></li>
+                <li><a href="#" class="tag" aria-label="Filter posts by Social games" onclick="filterPosts('social')">Social</a></li>
+                <li><a href="#" class="tag" aria-label="Filter posts by Fishing games" onclick="filterPosts('fishing')">Fishing</a></li>
+                <li><a href="#" class="tag" aria-label="Filter posts by Exploration games" onclick="filterPosts('exploration')">Exploration</a></li>
+                <li><a href="#" class="tag" aria-label="Filter posts by Survival games" onclick="filterPosts('survival')">Survival</a></li>
+                <li><a href="#" class="tag" aria-label="Filter posts by Crafting games" onclick="filterPosts('crafting')">Crafting</a></li>
+                <li><a href="#" class="tag" aria-label="Filter posts by Open World games" onclick="filterPosts('open-world')">Open World</a></li>
+                <li><a href="#" class="tag" aria-label="Filter posts by Atmospheric Horror games" onclick="filterPosts('atmospheric-horror')">Atmospheric Horror</a></li>
+                <li><a href="#" class="tag" aria-label="Filter posts by Deckbuilder games" onclick="filterPosts('deckbuilder')">Deckbuilder</a></li>
+                <li><a href="#" class="tag" aria-label="Filter posts by Roguelite games" onclick="filterPosts('roguelite')">Roguelite</a></li>
+                <li><a href="#" class="tag" aria-label="Filter posts by Metroidvania games" onclick="filterPosts('metroidvania')">Metroidvania</a></li>
+                <li><a href="#" class="tag" aria-label="Filter posts by Precision Platformer games" onclick="filterPosts('precision-platformer')">Precision-Platformer</a></li>
+                <li><a href="#" class="tag" aria-label="Filter posts by 3D Platformer games" onclick="filterPosts('3d-platformer')">3D Platformer</a></li>
+                <li><a href="#" class="tag" aria-label="Filter posts by Collectathon games" onclick="filterPosts('collectathon')">Collectathon</a></li>
+                <li><a href="#" class="tag" aria-label="Filter posts by Combat-Focused games" onclick="filterPosts('combat-focused')">Combat-Focused</a></li>
+                <li><a href="#" class="tag" aria-label="Filter posts by Minigames" onclick="filterPosts('minigames')">Minigames</a></li>
+                <li><a href="#" class="tag" aria-label="Filter posts by Soulslike games" onclick="filterPosts('soulslike')">Soulslike</a></li>
+                <li><a href="#" class="tag" aria-label="Filter posts by Difficult games" onclick="filterPosts('difficult')">Difficult</a></li>
+                <li><a href="#" class="tag" aria-label="Filter posts by Turn-Based games" onclick="filterPosts('turn-based')">Turn-Based</a></li>
+                <li><a href="#" class="tag" aria-label="Filter posts by ARPG games" onclick="filterPosts('arpg')">ARPG</a></li>
+                <li><a href="#" class="tag" aria-label="Filter posts by Co-op games" onclick="filterPosts('co-op')">Co-op</a></li>
+                <li><a href="#" class="tag" aria-label="Filter posts by Resource Management games" onclick="filterPosts('resource-management')">Resource Management</a></li>
+                <li><a href="#" class="tag" aria-label="Filter posts by Retro games" onclick="filterPosts('retro')">Retro</a></li>
+            </ul>
+        </div>
+        <!-- Add a toggle button -->
+        <button id="tags-toggle" aria-expanded="false">Show More</button>
     </section>
     
     <section id="blog-posts">
