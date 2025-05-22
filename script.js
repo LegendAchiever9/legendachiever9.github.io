@@ -16,9 +16,7 @@ function getQueryParam(name) {
 function filterPosts(selectedTags) {
     const posts = document.querySelectorAll('.post');
     posts.forEach(post => {
-        // Get the tags for each post (assuming the format "tag1, tag2, tag3")
         const postTags = post.getAttribute('data-tags').split(', ');
-        // Show the post only if it contains every active tag (AND condition)
         const showPost = selectedTags.every(tag => postTags.includes(tag));
         post.style.display = showPost ? 'block' : 'none';
     });
@@ -56,15 +54,11 @@ window.addEventListener('load', () => {
 document.querySelectorAll('.tag').forEach(tag => {
     tag.addEventListener('click', (event) => {
         event.preventDefault();
-        // Extract the tag name from the onclick attribute
-        // Assumes format like: onclick="filterPosts('tagName')"
         const selectedTag = tag.getAttribute('onclick').match(/'([^']+)'/)[1];
 
-        // Retrieve the current active tags from URL parameter 'tag'
         let activeTagsStr = getQueryParam('tag');
         let activeTags = activeTagsStr ? activeTagsStr.split(',') : [];
 
-        // Toggle: remove the tag if already selected; add it otherwise.
         const index = activeTags.indexOf(selectedTag);
         if (index > -1) {
             activeTags.splice(index, 1);
@@ -72,38 +66,33 @@ document.querySelectorAll('.tag').forEach(tag => {
             activeTags.push(selectedTag);
         }
 
-        // Build the new URL using a comma-separated list of active tags.
         let newUrl = 'index.html';
         if (activeTags.length > 0) {
             newUrl += '?tag=' + activeTags.join(',');
         }
-        window.location.href = newUrl; // This reload triggers the updated filtering
+        window.location.href = newUrl; 
     });
 });
 
 // On page load, apply filtering and active CSS classes based on URL parameter
 window.addEventListener('load', () => {
-    // Get the active tags from the URL (if any) and convert to an array
     const selectedTagsStr = getQueryParam('tag');
     let activeTags = selectedTagsStr ? selectedTagsStr.split(',') : [];
 
     if (activeTags.length > 0) {
         filterPosts(activeTags);
-        // For every active tag, add the "active" class to the matching tag elements
         activeTags.forEach(singleTag => {
             const matchingTags = document.querySelectorAll(`.tag[href='#'][onclick*="'${singleTag}'"]`);
             matchingTags.forEach(el => el.classList.add('active'));
         });
     } else {
-        // If no tags are active, show all posts
         document.querySelectorAll('.post').forEach(post => post.style.display = 'block');
     }
-    
+
     displayPostTags();
 });
 
-// Reset filters when clicking the "Home" link (or a link with #home),
-// mimicking a full filter reset as seen previously
+// Reset filters when clicking the "Home" link
 document.querySelectorAll('a[href="index.html"], a[href="#home"]').forEach(link => {
     link.addEventListener('click', (event) => {
         event.preventDefault();
@@ -118,14 +107,11 @@ document.querySelectorAll('.post h4 a').forEach(link => {
     });
 });
 
-
-// Random button functionality
+// --- Random Button Functionality ---
 document.addEventListener("DOMContentLoaded", () => {
     const randomButton = document.querySelector('a[href="#random"]');
-    randomButton.addEventListener("click", (event) => {
-        event.preventDefault();
 
-        // Collect all blog post links dynamically
+    function selectRandomPost() {
         const posts = Array.from(document.querySelectorAll("#blog-posts .post a"));
 
         if (posts.length === 0) {
@@ -134,35 +120,58 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         // Exclude "Home" and "About" links
-        const blogPosts = posts.filter(post => !["#home", "#about"].includes(post.getAttribute("href")));
+        const blogPosts = posts.filter(post => !["#home", "#about"].includes(post.getAttribute("href") ));
 
         // Pick a random blog post
         const randomPost = blogPosts[Math.floor(Math.random() * blogPosts.length)];
 
-        // Redirect to the random post
+        // Redirect to the selected post
         window.location.href = randomPost.getAttribute("href");
+    }
+
+    randomButton.addEventListener("click", (event) => {
+        event.preventDefault();
+
+        // Redirect to index.html first if user is on about.html
+        if (window.location.pathname.includes("about.html")) {
+            window.location.href = "index.html#random";
+            return;
+        }
+
+        // Directly pick a random post
+        selectRandomPost();
     });
+
+    // **Trigger random post selection on page load if URL contains #random**
+    if (window.location.hash === "#random") {
+        selectRandomPost();
+    }
 });
 
+// --- "Show More" Button Functionality ---
 document.addEventListener("DOMContentLoaded", () => {
     const tagsContainer = document.getElementById("tags-container");
     const toggleButton = document.getElementById("tags-toggle");
 
-    // Restore button state from localStorage
-    const savedState = localStorage.getItem("tagsExpanded") === "true";
-    tagsContainer.classList.toggle("expanded", savedState);
-    toggleButton.textContent = savedState ? "Show Less" : "Show More";
-    toggleButton.setAttribute("aria-expanded", savedState);
+    if (tagsContainer && toggleButton) {
+        // Restore button state from localStorage
+        const savedState = localStorage.getItem("tagsExpanded") === "true";
+        tagsContainer.classList.toggle("expanded", savedState);
+        toggleButton.textContent = savedState ? "Show Less" : "Show More";
+        toggleButton.setAttribute("aria-expanded", savedState);
 
-    toggleButton.addEventListener("click", () => {
-        // Toggle the expanded class
-        const isExpanded = tagsContainer.classList.toggle("expanded");
+        toggleButton.addEventListener("click", () => {
+            const isExpanded = tagsContainer.classList.toggle("expanded");
 
-        // Save the state to localStorage
-        localStorage.setItem("tagsExpanded", isExpanded);
+            localStorage.setItem("tagsExpanded", isExpanded);
 
-        // Update button text and ARIA attribute
-        toggleButton.textContent = isExpanded ? "Show Less" : "Show More";
-        toggleButton.setAttribute("aria-expanded", isExpanded);
-    });
+            toggleButton.textContent = isExpanded ? "Show Less" : "Show More";
+            toggleButton.setAttribute("aria-expanded", isExpanded);
+        });
+
+        // Preserve state after redirect
+        if (window.location.hash === "#random") {
+            localStorage.setItem("tagsExpanded", savedState);
+        }
+    }
 });
