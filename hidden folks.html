@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hidden Folks</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+</head>
+<body class="post-page">
+
+    <header>
+        <h1><a href="index.html" style="color: black; text-decoration: none;">Back to Home</a></h1>
+    </header>
+
+<!-- Tags Section moved to the top -->
+<section class="tags" id="tags">
+    <h3>Tags:</h3>
+    <ul>
+        <li><a href="#" class="tag" onclick="filterPosts('level-based')">Level-Based</a></li>
+        <li><a href="#" class="tag" onclick="filterPosts('puzzle')">Puzzle</a></li>
+    </ul>
+</section>
+
+    <main>
+
+        <article>
+            <h2>Hidden Folks</h2>
+            <p>Played in 2024</p>
+            <br>
+            
+            <!-- Section for Elevator Pitch -->
+            <section id="elevator-pitch">
+                <h3>Elevator Pitch</h3>
+                <p><span >Hidden Folks is a fully black and white &ldquo;I Spy&rdquo; style game but all of the audio is&hellip; mouth sounds? What I mean by that is that every single sound effect in the game, from car horns and people screaming to every click in the UI, is made by the developer&rsquo;s voice in some way. These so-called &ldquo;mouth sounds&rdquo; cast the game in a shockingly unique light that will certainly leave you with a memorable experience. It&rsquo;s bizarre and unconventional, and that&rsquo;s what makes this &ldquo;feature&rdquo; so special.</span></p>
+            </section>
+
+            <!-- Section for Content -->
+            <section id="content">
+                <h3>Content</h3>
+                <p><span >The gameplay isn&rsquo;t mindblowing, rather taking a tried and true approach found in many spot the object games. Seven worlds ranging from three to six levels each make up your challenge; in this game it is crucial for the backgrounds to be interesting, and Hidden Folks definitely delivers on this as you&rsquo;ll continuously find stranger and stranger scenarios as you progress. A pirate battle on the beach, enormous desert, ski resort, music festival, and replica of New York City are some of the backdrops that you&rsquo;ll encounter; these densely packed locations will provide plenty of room to make the game challenging yet satisfying.&nbsp;</span></p>
+<p>&nbsp;</p>
+<p><span >At the start of each level you&rsquo;ll see a list of objects &mdash; whether it be characters (or folks in this game) or items &mdash; each with their own image, brief riddle, and of course, specific sound effect. The riddles range from philosophical findings like &ldquo;Me squirrel. Me love tree. Me love pinecone. Yum yum!&rdquo; to actual brain teasers that will require you to pay attention to the finely crafted details in every level. Even though these components don&rsquo;t deviate from the classic formula, they&rsquo;re executed well; the focus on lighthearted humor from a design and audio perspective also do quite a bit of work to help the game stay engaging.&nbsp;</span></p>
+<p>&nbsp;</p>
+<p><span >The final and most evident piece of this game is the monochromatic nature; a fully black and white game where the entire goal is to find craftily hidden figures is ambitious in that it can be quite difficult for anything to stand out. It is quite easy for your eyes to glaze over as you pan across each level but if you don&rsquo;t stare for too long and approach the game level by level, this isn&rsquo;t too bad. The character and background designs are usually clear enough to grab your attention when needed, but some of the levels just have so much information it can be a challenge to keep up.</span></p>
+            </section>
+
+            <!-- Section for Pain Points -->
+            <section id="pain points">
+                <h3>Pain Points</h3>
+                <p><span >Aside from any issues you may expect for a game like this &mdash; such as certain objectives being too difficult to find &mdash;&nbsp; there isn&rsquo;t much to say here. Eye strain is definitely a potential problem as the levels are so large that you&rsquo;ll frequently catch yourself not blinking in pursuit of your current search. The full black and white color palette exacerbates this as everything quickly starts to blend together save for the diverse set pieces found throughout the game which can mitigate this negative.</span></p>
+<p>&nbsp;</p>
+<p><span >From a gameplay perspective my only complaint which plagued me in the desert level is that there is an additional control to the game besides clicking. Certain objects will only wobble when clicked and as such are actually meant to be clicked and dragged. Maybe I should have tried that sooner but my goodness it took way too long for me to try that and a few of the folks you&rsquo;ll need to find for the 100% completion absolutely require this method.</span></p>
+<p>&nbsp;</p>
+<p><span >The lack of music for a game where you&rsquo;ll be spending so much time looking at the same screen can be rough since you can only hear the same sound so many times before it starts to grind away at you. It is certainly a bold and respectable choice that had its fair share of hilarious moments, but after a while it did start to lose its luster a bit.</span></p>
+            </section>
+
+            <!-- Section for Music -->
+            <section id="music">
+                <h3>Music</h3>
+                <p><span >Whether their novelty has longevity or not, the mouth sounds are funny and inspired so I cannot help but give props to this idea. Otherwise there isn&rsquo;t any music to speak of here. The sheer variety in the sound effects brings humor to a game which is otherwise filled with slowly panning around to find something that catches your eye.</span></p>
+            </section>
+
+            <!-- Section for Summary -->
+            <section id="summary">
+                <h3>Summary</h3>
+                <p><span >Hidden Folks will let you test your eye for detail in this wacky spiritual successor to &ldquo;Where&rsquo;s Waldo&rdquo; filled with charm and massive environments. Pour over a sea of quirky characters and purposefully placed objects to find the missing people and items needed to move on. Make sure you have enough patience or an extra set of eyes with you and you&rsquo;ll have a short but enjoyable time with this game.</span></p>
+            </section>
+
+            <!-- Section for Song of the Game -->
+            <section id="songofthegame">
+                <h3>Song of the Game</h3>
+                <p><span >Not applicable for this game!</span></p>
+            </section>
+        </article>
+    </main>
+
+    <footer>
+        <p>&copy; LegendAchiever9 Game Blog. My thoughts are my own.</p>
+    </footer>
+
+    <script>
+        // Toggle content visibility on button click
+        const toggleButton = document.querySelector('.toggle-content');
+        const hiddenContent = document.querySelector('.hidden-content');  // Correcting the target to '.hidden-content'
+
+        toggleButton.addEventListener('click', () => {
+            if (hiddenContent.style.display === 'none' || hiddenContent.style.display === '') {
+                hiddenContent.style.display = 'block';
+            } else {
+                hiddenContent.style.display = 'none';
+            }
+        });
+
+        // Filter posts by tags (you can expand this functionality later)
+        function filterPosts(tag) {
+            console.log(`Filtering posts by: ${tag}`);
+            // Your filtering logic goes here
+        }
+    </script>
+</body>
+</html>
