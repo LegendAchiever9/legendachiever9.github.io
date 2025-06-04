@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cocoon</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+</head>
+<body class="post-page">
+
+    <header>
+        <h1><a href="index.html" style="color: black; text-decoration: none;">Back to Home</a></h1>
+    </header>
+
+<!-- Tags Section moved to the top -->
+<section class="tags" id="tags">
+    <h3>Tags:</h3>
+    <ul>
+        <li><a href="#" class="tag" onclick="filterPosts('exploration')">Exploration</a></li>
+        <li><a href="#" class="tag" onclick="filterPosts('puzzle')">Puzzle</a></li>
+    </ul>
+</section>
+
+    <main>
+
+        <article>
+            <h2>Cocoon</h2>
+            <p>Played in 2024</p>
+            <br>
+            
+            <!-- Section for Elevator Pitch -->
+            <section id="elevator-pitch">
+                <h3>Elevator Pitch</h3>
+                <p><span >Imagro.</span></p>
+            </section>
+
+            <!-- Section for Content -->
+            <section id="content">
+                <h3>Content</h3>
+                <p><span >Fr</span></p>
+            </section>
+
+            <!-- Section for Pain Points -->
+            <section id="pain points">
+                <h3>Pain Points</h3>
+                <p><span >Ghs</span></p>
+            </section>
+
+            <!-- Section for Music -->
+            <section id="music">
+                <h3>Music</h3>
+                <p><span >Ghte.</span></p>
+            </section>
+        
+
+            <!-- The toggle button -->
+            <button class="toggle-content">SPOILERS</button>
+
+            <!-- The content to be toggled (initially hidden) -->
+            <div class="hidden-content" style="display:none;">
+                <p><b>This is the point of no return, where we'll discuss parts of the game that are SPOILERS. <br> Turn back now if you're not ready!</b></p>
+                <!-- Section for Spoiler Music -->
+                <section id="music">
+                    <h3>Music</h3>
+                    <p><span >Solme.</span></p>
+                </section>
+
+                <!-- Section for Spoiler Content -->
+                <section id="content">
+                    <h3>Content</h3>
+                    <p><span >Thure.</span></p>
+                </section>
+            </div>
+
+            <!-- Section for Summary -->
+            <section id="summary">
+                <h3>Summary</h3>
+                <p><span >Gck.</span></p>
+            </section>
+
+            <!-- Section for Song of the Game -->
+            <section id="songofthegame">
+                <h3>Song of the Game</h3>
+                <p><span >;&ldquo;Solitude&rdquo;</span></p>
+            </section>
+
+        </article>
+    </main>
+
+    <footer>
+        <p>&copy; LegendAchiever9 Game Blog. My thoughts are my own.</p>
+    </footer>
+
+    <script>
+        // Toggle content visibility on button click
+        const toggleButton = document.querySelector('.toggle-content');
+        const hiddenContent = document.querySelector('.hidden-content');  // Correcting the target to '.hidden-content'
+
+        toggleButton.addEventListener('click', () => {
+            if (hiddenContent.style.display === 'none' || hiddenContent.style.display === '') {
+                hiddenContent.style.display = 'block';
+            } else {
+                hiddenContent.style.display = 'none';
+            }
+        });
+
+        // Filter posts by tags (you can expand this functionality later)
+        function filterPosts(tag) {
+            console.log(`Filtering posts by: ${tag}`);
+            // Your filtering logic goes here
+        }
+    </script>
+</body>
+</html>
